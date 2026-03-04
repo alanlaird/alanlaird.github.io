@@ -1,0 +1,26 @@
+---
+layout: home
+title: Personal
+---
+<link rel="stylesheet" href="/style.css">
+
+<div class="content-container">
+  <h1>personal</h1>
+  <ul>
+    {% for post in site.categories.personal %}
+    <li>
+      <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<style>
+  .content-container ul { list-style: none; padding: 0; flex: 1; }
+  .content-container li { padding: 8px 0; border-bottom: 1px solid #eee; }
+  .content-container li:last-child { border-bottom: none; }
+  .post-date { color: #888; font-size: 0.85em; margin-right: 12px; }
+  .content-container a { color: #2c3e50; text-decoration: none; }
+  .content-container a:hover { text-decoration: underline; }
+</style>

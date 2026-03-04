@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "GPU cluster benchmarking on Nebius with Terraform, Ansible, and NCCL"
+category: tech
 ---
 
 # GPU cluster benchmarking on Nebius
