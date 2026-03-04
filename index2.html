@@ -13,8 +13,17 @@ title: My Blog
 <body>
     <div class="content-container">
         <h1>the rain</h1>
-        <img src="img/totoro.gif" alt="the rain">
+        <img id="totoro" src="img/totoro.gif" alt="the rain">
     </div>
+
+    <script>
+        const images = ["img/totoro.gif", "img/totoro-umbrella.gif"];
+        let current = 0;
+        setInterval(() => {
+            current = (current + 1) % images.length;
+            document.getElementById("totoro").src = images[current];
+        }, 30000);
+    </script>
     <div class="content-container">
         <ul>
             <li><a href="blog.html">blog</a></li>
