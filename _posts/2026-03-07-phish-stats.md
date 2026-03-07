@@ -46,8 +46,6 @@ Last show (so far): October 22, 2021 at Desert Sky Pavilion, Phoenix, AZ.
 
 1999 stands out — 15 shows in one year is a lot for anyone with a day job. That includes the summer West Coast run, the December northeast tour, and then Big Cypress to close out the millennium.
 
-[![End of tour, 1999](/img/endoftour99.jpg)](https://phish.net)
-
 ### Most-seen venues
 
 | Shows | Venue |
