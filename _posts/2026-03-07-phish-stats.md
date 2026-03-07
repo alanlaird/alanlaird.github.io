@@ -1,10 +1,8 @@
 ---
-layout: post
+layout: personal
 title: "72 Phish shows: a West Coast fan's stats"
 category: personal
 ---
-
-# 72 Phish shows: a West Coast fan's stats
 
 [![Phish](/img/phish-colorful.png)](https://phish.net)
 
