@@ -10,7 +10,7 @@ I built a small Terraform + Makefile project that spins up a Talos Linux Kuberne
 
 ## Why Talos
 
-[![Talos Linux](_posts/img/talos-logo.svg)](https://www.talos.dev/)
+[![Talos Linux](/img/talos-logo.svg)](https://www.talos.dev/)
 
 Talos Linux is a minimal, immutable OS [designed specifically for running Kubernetes](https://www.talos.dev/). There's no SSH, no package manager, no shell — the entire OS is managed through a gRPC API (`talosctl`). This makes it a good fit for ephemeral cloud VMs: there's nothing to configure or drift, and the OS footprint is tiny enough to boot comfortably on a 20GB disk.
 

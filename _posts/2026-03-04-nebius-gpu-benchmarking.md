@@ -8,13 +8,13 @@ category: tech
 
 I built a small toolkit for spinning up GPU nodes on [Nebius AI Cloud](https://nebius.com), running NCCL all-reduce benchmarks, and tearing everything down — all from a single `make` command. The code is at [github.com/alanlaird/gpulabs/nebius](https://github.com/alanlaird/gpulabs/tree/main/nebius).
 
-[![Nebius GPU cluster architecture](_posts/img/nebius-cluster-scheme.svg)](https://nebius.com/blog/posts/how-we-build-reliable-clusters)
+[![Nebius GPU cluster architecture](/img/nebius-cluster-scheme.svg)](https://nebius.com/blog/posts/how-we-build-reliable-clusters)
 
 ## Why Nebius
 
 Nebius is a GPU-native cloud spun out of Yandex. Their eu-north1 region has H100 SXM nodes connected via NVIDIA Quantum-2 InfiniBand at 400 Gbps per node — the same fabric you'd get in a datacenter GPU cluster. Pricing is competitive: L40S nodes start at ~$1.55/hr, H100 single-GPU at ~$2.30/hr, and full 8×H100 IB nodes at ~$18.40/hr.
 
-[![Nebius InfiniBand fabric topology](_posts/img/nebius-ib-topology.gif)](https://nebius.com/blog/posts/leveraging-nvidia-gb200-nvl72-gpu-interconnect)
+[![Nebius InfiniBand fabric topology](/img/nebius-ib-topology.gif)](https://nebius.com/blog/posts/leveraging-nvidia-gb200-nvl72-gpu-interconnect)
 
 ## The setup
 
@@ -77,7 +77,7 @@ resource "nebius_compute_v1_gpu_cluster" "ib_cluster" {
 
 eu-north1 has four H100 IB fabrics (`fabric-2` through `fabric-6`). eu-west1 has H200 IB on `fabric-5`. Each region uses its own naming convention — `me-west1` uses `me-west1-a`, not `fabric-*`.
 
-[![Nebius GPU cluster topology diagram](_posts/img/nebius-cluster-scheme2.svg)](https://nebius.com/blog/posts/how-we-build-reliable-clusters)
+[![Nebius GPU cluster topology diagram](/img/nebius-cluster-scheme2.svg)](https://nebius.com/blog/posts/how-we-build-reliable-clusters)
 
 One operational gotcha: when an IB node gets stuck in `STARTING` state, `terraform destroy` fails because the Nebius API rejects delete requests for resources in transient states. The fix is to go around Terraform directly:
 
