@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alan Laird — Resume</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9.5pt;
+    color: #1a1a1a;
+    background: #fff;
+    padding: 0.6in 0.65in;
+    max-width: 8.5in;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  /* ── HEADER ── */
+  .header { margin-bottom: 12px; }
+
+  h1 {
+    font-size: 26pt;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0d0d0d;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .subtitle {
+    font-size: 11pt;
+    font-weight: 600;
+    color: #1a5fa8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .contact {
+    font-size: 8.5pt;
+    color: #444;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 18px;
+    border-top: 1.5px solid #1a5fa8;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+  }
+
+  .contact a { color: #1a5fa8; text-decoration: none; }
+  .contact span { color: #888; margin: 0 2px; }
+
+  /* ── SECTION HEADERS ── */
+  h2 {
+    font-size: 9pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #1a5fa8;
+    border-bottom: 1.5px solid #1a5fa8;
+    padding-bottom: 2px;
+    margin: 14px 0 7px 0;
+  }
+
+  /* ── JOB ENTRIES ── */
+  .job { margin-bottom: 10px; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+
+  .job-title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0d0d0d;
+  }
+
+  .job-date {
+    font-size: 8.5pt;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  .job-company {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #1a5fa8;
+    margin-bottom: 1px;
+  }
+
+  .job-company .location {
+    font-weight: 400;
+    color: #777;
+    font-size: 8.5pt;
+  }
+
+  .job-summary {
+    font-size: 9pt;
+    color: #333;
+    margin: 3px 0 4px 0;
+    font-style: italic;
+  }
+
+  ul {
+    margin: 3px 0 0 15px;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 2.5px;
+    line-height: 1.4;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 20px;
+  }
+
+  .skill-item {
+    font-size: 9pt;
+    padding: 1px 0;
+    border-bottom: 1px dotted #e0e0e0;
+  }
+
+  .skill-label {
+    font-weight: 600;
+    color: #0d0d0d;
+  }
+
+  /* ── EDUCATION / CERTS ── */
+  .edu-item { margin-bottom: 4px; }
+  .edu-degree { font-weight: 700; font-size: 9.5pt; }
+  .edu-school { color: #1a5fa8; font-weight: 600; }
+  .edu-date { color: #777; font-size: 8.5pt; }
+
+  /* ── PAGE BREAK CONTROL ── */
+  @media print {
+    body { padding: 0.5in 0.6in; }
+    @page { margin: 0; size: letter; }
+    .job { page-break-inside: avoid; }
+    h2 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>ALAN LAIRD</h1>
+  <div class="subtitle">Site Reliability Engineer &nbsp;|&nbsp; Infrastructure Platform Engineer</div>
+  <div class="contact">
+    <span>alan@laird.net</span>
+    <span>541-840-3100</span>
+    <span>Tucson, AZ 85737</span>
+    <a href="https://www.linkedin.com/in/alaird/">linkedin.com/in/alaird</a>
+    <a href="https://github.com/alanlaird">github.com/alanlaird</a>
+  </div>
+</div>
+
+<!-- OBJECTIVE -->
+<h2>Career Objective</h2>
+<p style="font-size:9.5pt; color:#333;">
+  Senior Site Reliability Engineer with 30 years of experience operating and automating large-scale Linux infrastructure, HPC clusters, bare metal Kubernetes, and GPU compute environments. Deep expertise in cluster lifecycle automation, CI/CD pipelines, HPC workload scheduling, and Linux performance and internals. Proven track record building self-healing, observable infrastructure across bare metal and cloud environments.
+</p>
+
+<!-- EXPERIENCE -->
+<h2>Work Experience</h2>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Lead Senior Software Engineer — Compute Technology Group</div>
+    <div class="job-date">6/2023 – 11/2025</div>
+  </div>
+  <div class="job-company">Akamai <span class="location">· Remote</span></div>
+  <p class="job-summary">Lead engineer in a team of 20 building internal bare metal cloud infrastructure, including rapid GPU compute deployment at scale.</p>
+  <ul>
+    <li>Automated bare metal cluster lifecycle — provisioning, upgrades, and scaling — using KVM/Libvirt, Ansible, and iPXE network boot, delivering the team's first self-service cloud platform</li>
+    <li>Led GPU node deployment into the production environment, coordinating hardware provisioning, OS imaging, and cluster onboarding pipelines</li>
+    <li>Integrated new services against a large existing Salt configuration management base, driving a service-oriented automation culture</li>
+    <li>Built Python tooling to accelerate feature development and reduce deployment risk across the compute fleet</li>
+    <li>Drove adoption of infrastructure-as-code practices and CI/CD-driven workflows within the software team</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Infrastructure Developer — Engineering Shared Services</div>
+    <div class="job-date">10/2021 – 3/2023</div>
+  </div>
+  <div class="job-company">ViaSat <span class="location">· Remote</span></div>
+  <p class="job-summary">SRE and DevOps engineer maintaining customer-facing and global engineering services and pipelines.</p>
+  <ul>
+    <li>Maintained and extended complex Ansible playbooks for system provisioning and service automation across Linux fleet</li>
+    <li>Rebuilt Ubuntu and CentOS real-time kernel build pipelines with El-repo and RT sources — deep Linux kernel and performance internals expertise</li>
+    <li>Created Ansible-managed jump box service in AWS using Terraform for VPC and Security Groups, Jenkins for weekly automated rebuilds</li>
+    <li>Steered Python components of Jenkins CI/CD environment; modernized monthly Docker base image releases for OS and platform pipelines</li>
+    <li>On-call support and troubleshooting for complex Consul service mesh and Syslog routing environments; built observability and alerting runbooks</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Systems Manager / SRE / Enterprise Systems Architect</div>
+    <div class="job-date">2/2012 – 10/2021</div>
+  </div>
+  <div class="job-company">Iovation <span class="location">· Anti-fraud SaaS (Starbucks, FedEx, and others) · Portland OR, Remote</span></div>
+  <p class="job-summary">Built and led systems team maintaining high availability across multiple datacenters while driving full infrastructure modernization.</p>
+  <ul>
+    <li>Designed and operated iPXE-based bare metal provisioning infrastructure for automated OS deployment across datacenter fleet, integrated with Packer image build pipelines and a monthly OS release cadence with security patches</li>
+    <li>Built Kubernetes bare metal clusters with iPXE-driven node provisioning, testing High Availability and top-of-rack BGP patterns for multi-tenant workloads</li>
+    <li>Built and automated MVP Docker versions of product stack using Ansible on AWS, CoreOS, and Kubernetes</li>
+    <li>Engineered 50-node OpenStack and Kubernetes environments with full OS release pipelines in Packer</li>
+    <li>Created Puppet-managed KVM/Libvirt virtualization platform replacing VMware; scaled to 64 compute hosts supporting ~1000 VMs, lowering cost and increasing delivery speed</li>
+    <li>Rebuilt legacy Sun/Hitachi multi-datacenter environment with Dell/Supermicro CentOS and Puppet-driven IaC; expanded to Miami and Amsterdam with hybrid cloud patterns for Asia</li>
+    <li>Improved SRE tooling for automation, monitoring, alerting, and distributed tracing across Ansible, Terraform, and AWS CloudFormation</li>
+    <li>SAFe Systems Architect; drove engineering culture and documentation standards across the org</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Sr. SaaS Operations Hosting</div>
+    <div class="job-date">12/2010 – 2/2012</div>
+  </div>
+  <div class="job-company">Jive Software <span class="location">· Portland OR</span></div>
+  <ul>
+    <li>Navigated complex infrastructure work supporting high-value customers on the Jive SaaS platform</li>
+    <li>Wrote Puppet code managing large numbers of AWS and VMware virtual systems, networks, and security groups</li>
+    <li>Drove process creation to increase accuracy and throughput while doubling team size</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">HPC UNIX Systems Administration</div>
+    <div class="job-date">1/2010 – 12/2010</div>
+  </div>
+  <div class="job-company">Penguin Computing <span class="location">· Remote</span></div>
+  <p class="job-summary">Contract UNIX admin supporting the Bioscope genetic sequencing HPC product and bioinformatics customers.</p>
+  <ul>
+    <li>Administered production HPC Linux and Solaris clusters using TORQUE, PBS, MAUI, SGE, and LSF workload managers — direct analogs to Slurm — for research institutions including NIH and Sorbonne</li>
+    <li>Tuned compute cluster hardware, firmware, and scheduler configurations to maximize throughput for bioinformatics workloads</li>
+    <li>Modernized cluster provisioning and increased job scheduling efficiency across multi-tenant HPC environments</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Network and Systems Architect</div>
+    <div class="job-date">6/2002 – 12/2009</div>
+  </div>
+  <div class="job-company">Musician's Friend <span class="location">· Medford OR</span></div>
+  <ul>
+    <li>Architected systems and networks supporting 8x revenue growth; led PCI Level 2 and ISO 27001 compliance efforts</li>
+    <li>Built hundreds of UNIX systems, SAN storage, datacenters, and LAN/WAN networks including load balancers, firewalls, and caching tiers</li>
+    <li>Deployed Akamai global load balancing with L7 traffic shaping and active health-based traffic steering; rebuilt F5 stack with full alerting</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">IT Manager / Lead Integrator for M&amp;A</div>
+    <div class="job-date">11/1998 – 6/2001</div>
+  </div>
+  <div class="job-company">Maverick Networks / Broadcom <span class="location">· San Jose CA</span></div>
+  <ul>
+    <li>Primary engineering support for startup reporting to VP of Engineering; responsible for systems, networks, labs, and contractors</li>
+    <li>Introduced LSF job scheduling and built large data runout environment with data lifecycle accounting</li>
+    <li>Integrated software dev environments and labs for Broadcom's Silicon Valley acquisitions</li>
+    <li>Advocated for programming interface compatibility enabling rapid development on VxWorks and Linux</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Engineering System Admin / IT Manager / Application Engineer</div>
+    <div class="job-date">6/1997 – 11/1998</div>
+  </div>
+  <div class="job-company">Silicon Graphics (SGI) <span class="location">· Mountain View CA</span></div>
+  <ul>
+    <li>Managed hundreds of high-performance SGI compute systems across four labs with complex ATM and high-speed interconnect networks, supporting three software engineering teams</li>
+    <li>Developed test harnesses for performance characterization of SGI hardware; produced tuning guides that drove SGI to eclipse all other UNIX vendors in NEWS server benchmarks in 1998</li>
+    <li>Deep hands-on with IRIX systems internals, hardware diagnostics, and high-performance I/O subsystems</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">IT Manager</div>
+    <div class="job-date"></div>
+  </div>
+  <div class="job-company">Taos Mountain Software <span class="location">· Palo Alto CA</span></div>
+  <ul>
+    <li>Led retrofit of 250K sq. ft. facility; hired and led support team of three</li>
+    <li>Built Solaris and Windows desktop/development environments on NCD X terminals</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">UNIX and Network Admin</div>
+    <div class="job-date"></div>
+  </div>
+  <div class="job-company">InfoStructure <span class="location">· Ashland OR</span></div>
+  <ul>
+    <li>Built ISP startup: systems, networks, and custom billing tools; grew to hundreds of modems and thousands of customers with partnerships including Southern Oregon University and City of Ashland</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-header">
+    <div class="job-title">Tools Software Development</div>
+    <div class="job-date"></div>
+  </div>
+  <div class="job-company">Trilobyte <span class="location">· The 7th Guest · Jacksonville OR</span></div>
+  <ul>
+    <li>Wrote tools and wrangled assets; participated in game design; supported partners with custom builds</li>
+  </ul>
+</div>
+
+<!-- SKILLS -->
+<h2>Skills</h2>
+<div class="skills-grid">
+  <div class="skill-item"><span class="skill-label">Kubernetes</span> — bare metal &amp; cloud (lifecycle, provisioning, multi-tenant)</div>
+  <div class="skill-item"><span class="skill-label">HPC Workload Scheduling</span> — TORQUE, PBS, MAUI, SGE, LSF</div>
+  <div class="skill-item"><span class="skill-label">GPU Infrastructure</span> — bare metal GPU node provisioning &amp; fleet mgmt</div>
+  <div class="skill-item"><span class="skill-label">Bare Metal Provisioning</span> — iPXE/PXE boot, Packer, OS release pipelines</div>
+  <div class="skill-item"><span class="skill-label">Infrastructure as Code</span> — Terraform, Ansible, Puppet, Packer</div>
+  <div class="skill-item"><span class="skill-label">CI/CD</span> — Jenkins, GitHub Actions, Helm, Kustomize</div>
+  <div class="skill-item"><span class="skill-label">Linux Systems</span> — performance tuning, internals, real-time kernels</div>
+  <div class="skill-item"><span class="skill-label">Observability</span> — Consul, metrics, alerting, distributed tracing</div>
+  <div class="skill-item"><span class="skill-label">Networking</span> — L3/L4, BGP, DNS, load balancing, VPC, SDN</div>
+  <div class="skill-item"><span class="skill-label">Cloud</span> — AWS (VPC, Security Groups, CloudFormation, EC2)</div>
+  <div class="skill-item"><span class="skill-label">Virtualization</span> — KVM, QEMU, Libvirt, OpenStack, VMware</div>
+  <div class="skill-item"><span class="skill-label">Languages</span> — Python, Bash, Salt; Go tooling familiarity</div>
+</div>
+
+<!-- EDUCATION & CERTS -->
+<h2>Education &amp; Certifications</h2>
+<div class="edu-item">
+  <span class="edu-degree">Computer Science</span> &nbsp;·&nbsp;
+  <span class="edu-school">Southern Oregon University</span> &nbsp;·&nbsp;
+  <span class="edu-date">1987–1993</span>
+</div>
+<div class="edu-item">
+  <span class="edu-degree">ISO 27001 / BSI 1799 Trainer</span> &nbsp;·&nbsp;
+  <span class="edu-date">2006</span>
+</div>
+
+</body>
+</html>
