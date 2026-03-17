@@ -1,0 +1,127 @@
+<svg width="900" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, 'Cascadia Code', monospace, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 7 2.5, 0 5" fill="#34d399"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="420" rx="14" fill="#0d1117"/>
+  <rect width="900" height="420" rx="14" fill="none" stroke="#1f2937" stroke-width="1.5"/>
+
+  <!-- Hub box -->
+  <rect x="270" y="24" width="360" height="100" rx="10" fill="#0c2a4a" stroke="#2563eb" stroke-width="2"/>
+  <rect x="270" y="24" width="360" height="100" rx="10" fill="url(#hubgrad)" opacity="0.3"/>
+
+  <!-- Hub server icon -->
+  <rect x="290" y="42" width="44" height="30" rx="4" fill="#1e40af" stroke="#3b82f6" stroke-width="1"/>
+  <rect x="293" y="45" width="38" height="5" rx="2" fill="#60a5fa" opacity="0.6"/>
+  <rect x="293" y="53" width="38" height="5" rx="2" fill="#60a5fa" opacity="4"/>
+  <rect x="293" y="61" width="38" height="5" rx="2" fill="#60a5fa" opacity="0.2"/>
+  <circle cx="328" cy="82" r="5" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+  <circle cx="314" cy="82" r="5" fill="none" stroke="#1e40af" stroke-width="1.5"/>
+  <line x1="333" y1="82" x2="342" y2="82" stroke="#374151" stroke-width="1.5"/>
+
+  <!-- Hub label -->
+  <text x="344" y="58" fill="#93c5fd" font-size="20" font-weight="bold" letter-spacing="-0.3">Beszel Hub</text>
+  <text x="344" y="78" fill="#6b7280" font-size="12">myrtle · port 8090</text>
+  <text x="344" y="98" fill="#374151" font-size="11">web UI · REST API · agent SSH tunnels</text>
+
+  <!-- Badge: "1 container" -->
+  <rect x="466" y="106" width="94" height="16" rx="8" fill="#1e3a5f" stroke="#2563eb" stroke-width="1"/>
+  <text x="513" y="118" text-anchor="middle" fill="#60a5fa" font-size="10">1 docker container</text>
+
+  <!-- Connection lines: hub bottom (450,124) → agent tops (y=225) -->
+  <!-- arago center=75 -->
+  <line x1="450" y1="124" x2="75"  y2="218" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.55" marker-end="url(#ah)"/>
+  <!-- fir center=225 -->
+  <line x1="450" y1="124" x2="225" y2="218" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.55" marker-end="url(#ah)"/>
+  <!-- heceta center=375 -->
+  <line x1="450" y1="124" x2="375" y2="218" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.55" marker-end="url(#ah)"/>
+  <!-- shasta center=525 -->
+  <line x1="450" y1="124" x2="525" y2="218" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.55" marker-end="url(#ah)"/>
+  <!-- perpetua center=675 -->
+  <line x1="450" y1="124" x2="675" y2="218" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.55" marker-end="url(#ah)"/>
+  <!-- yaquina center=825 -->
+  <line x1="450" y1="124" x2="825" y2="218" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3" opacity="0.55" marker-end="url(#ah)"/>
+
+  <!-- Registration arrows: agents → hub (token auto-registration) -->
+  <line x1="75"  y1="218" x2="420" y2="128" stroke="#6b7280" stroke-width="1" stroke-dasharray="2 5" opacity="0.35"/>
+  <line x1="825" y1="218" x2="480" y2="128" stroke="#6b7280" stroke-width="1" stroke-dasharray="2 5" opacity="0.35"/>
+
+  <!-- Agent boxes — 6×, each 130×105, centers at 75 225 375 525 675 825 -->
+  <!-- arago -->
+  <rect x="10"  y="218" width="130" height="110" rx="7" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="26" cy="235" r="5" fill="#22c55e" opacity="0.8"/>
+  <text x="75"  y="243" text-anchor="middle" fill="#86efac" font-size="13" font-weight="bold">arago</text>
+  <text x="75"  y="261" text-anchor="middle" fill="#166534" font-size="11">beszel-agent :45876</text>
+  <line x1="18" y1="270" x2="132" y2="270" stroke="#14532d" stroke-width="1"/>
+  <text x="75"  y="284" text-anchor="middle" fill="#15803d" font-size="10">kvm · podman</text>
+  <text x="75"  y="298" text-anchor="middle" fill="#15803d" font-size="10">plex · tautulli</text>
+  <text x="75"  y="318" text-anchor="middle" fill="#14532d" font-size="9">N5105 · 63 GB</text>
+
+  <!-- fir -->
+  <rect x="160" y="218" width="130" height="110" rx="7" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="176" cy="235" r="5" fill="#22c55e" opacity="0.8"/>
+  <text x="225" y="243" text-anchor="middle" fill="#86efac" font-size="13" font-weight="bold">fir</text>
+  <text x="225" y="261" text-anchor="middle" fill="#166534" font-size="11">beszel-agent :45876</text>
+  <line x1="168" y1="270" x2="282" y2="270" stroke="#14532d" stroke-width="1"/>
+  <text x="225" y="284" text-anchor="middle" fill="#15803d" font-size="10">kvm · podman</text>
+  <text x="225" y="298" text-anchor="middle" fill="#15803d" font-size="10">plex · radarr · sonarr</text>
+  <text x="225" y="318" text-anchor="middle" fill="#14532d" font-size="9">N5105 · 32 GB</text>
+
+  <!-- heceta -->
+  <rect x="310" y="218" width="130" height="110" rx="7" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="326" cy="235" r="5" fill="#22c55e" opacity="0.8"/>
+  <text x="375" y="243" text-anchor="middle" fill="#86efac" font-size="13" font-weight="bold">heceta</text>
+  <text x="375" y="261" text-anchor="middle" fill="#166534" font-size="11">beszel-agent :45876</text>
+  <line x1="318" y1="270" x2="432" y2="270" stroke="#14532d" stroke-width="1"/>
+  <text x="375" y="284" text-anchor="middle" fill="#15803d" font-size="10">kvm · podman</text>
+  <text x="375" y="298" text-anchor="middle" fill="#15803d" font-size="10">talos host</text>
+  <text x="375" y="318" text-anchor="middle" fill="#14532d" font-size="9">N5105 · 31 GB</text>
+
+  <!-- shasta -->
+  <rect x="460" y="218" width="130" height="110" rx="7" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="476" cy="235" r="5" fill="#22c55e" opacity="0.8"/>
+  <text x="525" y="243" text-anchor="middle" fill="#86efac" font-size="13" font-weight="bold">shasta</text>
+  <text x="525" y="261" text-anchor="middle" fill="#166534" font-size="11">beszel-agent :45876</text>
+  <line x1="468" y1="270" x2="582" y2="270" stroke="#14532d" stroke-width="1"/>
+  <text x="525" y="284" text-anchor="middle" fill="#15803d" font-size="10">kvm · podman</text>
+  <text x="525" y="298" text-anchor="middle" fill="#15803d" font-size="10">&#160;</text>
+  <text x="525" y="318" text-anchor="middle" fill="#14532d" font-size="9">N100 · 16 GB</text>
+
+  <!-- perpetua -->
+  <rect x="610" y="218" width="130" height="110" rx="7" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="626" cy="235" r="5" fill="#22c55e" opacity="0.8"/>
+  <text x="675" y="243" text-anchor="middle" fill="#86efac" font-size="13" font-weight="bold">perpetua</text>
+  <text x="675" y="261" text-anchor="middle" fill="#166534" font-size="11">beszel-agent :45876</text>
+  <line x1="618" y1="270" x2="732" y2="270" stroke="#14532d" stroke-width="1"/>
+  <text x="675" y="284" text-anchor="middle" fill="#15803d" font-size="10">kvm · podman</text>
+  <text x="675" y="298" text-anchor="middle" fill="#15803d" font-size="10">media compute</text>
+  <text x="675" y="318" text-anchor="middle" fill="#14532d" font-size="9">N5105 · 23 GB</text>
+
+  <!-- yaquina -->
+  <rect x="760" y="218" width="130" height="110" rx="7" fill="#052e16" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="776" cy="235" r="5" fill="#22c55e" opacity="0.8"/>
+  <text x="825" y="243" text-anchor="middle" fill="#86efac" font-size="13" font-weight="bold">yaquina</text>
+  <text x="825" y="261" text-anchor="middle" fill="#166534" font-size="11">beszel-agent :45876</text>
+  <line x1="768" y1="270" x2="882" y2="270" stroke="#14532d" stroke-width="1"/>
+  <text x="825" y="284" text-anchor="middle" fill="#15803d" font-size="10">kvm · podman</text>
+  <text x="825" y="298" text-anchor="middle" fill="#15803d" font-size="10">media compute</text>
+  <text x="825" y="318" text-anchor="middle" fill="#14532d" font-size="9">N5105 · 63 GB</text>
+
+  <!-- Legend row -->
+  <line x1="30"  y1="370" x2="70"  y2="370" stroke="#34d399" stroke-width="1.5" stroke-dasharray="6 3"/>
+  <text x="78"  y="375" fill="#4b5563" font-size="11">hub SSH-tunnels to agent (metrics poll)</text>
+  <line x1="360" y1="370" x2="400" y2="370" stroke="#6b7280" stroke-width="1" stroke-dasharray="2 5"/>
+  <text x="408" y="375" fill="#4b5563" font-size="11">agent → hub token auto-registration</text>
+  <circle cx="660" cy="370" r="4" fill="#22c55e" opacity="0.8"/>
+  <text x="672" y="375" fill="#4b5563" font-size="11">agent running</text>
+
+  <!-- Bottom footer -->
+  <text x="450" y="405" text-anchor="middle" fill="#1f2937" font-size="10">DOCKER_HOST=unix:///run/podman/podman.sock  ·  container stats via Podman socket</text>
+</svg>
