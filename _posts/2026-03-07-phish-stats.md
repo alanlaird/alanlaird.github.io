@@ -4,7 +4,7 @@ title: "72 Phish shows: a West Coast fan's stats"
 category: personal
 ---
 
-[![Phish](/img/phish-colorful.png)](https://phish.net)
+[![Phish](/img/me/phish-colorful.png)](https://phish.net)
 
 I've been going to Phish shows since 1995 and I finally sat down and counted them all up. The answer is 72 — a number that feels both "wow, that's a lot" and "is that it?" depending on who you're asking. My setlist file and some help from [ihoz.com](http://www.ihoz.com/PhishStats.html) did most of the work.
 
@@ -56,7 +56,7 @@ Last show (so far): October 22, 2021 at Desert Sky Pavilion, Phoenix, AZ.
 | 3 | Bill Graham Civic Auditorium, San Francisco, CA |
 | 3 | Ruoff Music Center, Noblesville, IN |
 
-[![Gorge 1998](/img/gorge98.jpg)](https://phish.net)
+[![Gorge 1998](/img/me/gorge98.jpg)](https://phish.net)
 
 Sixteen shows at the Gorge. If you've been, you understand — there's no better place to see Phish on earth. The Columbia River gorge at sunset, the stage backdrop, three-night runs that build on each other. It accounts for nearly a quarter of my total show count on its own.
 
@@ -78,7 +78,7 @@ The West Coast (CA + WA + OR + NV) is 50 out of 72. That's just where I live and
 
 ## Special events
 
-[![Big Cypress aerial](/img/cypress.png)](https://phish.net)
+[![Big Cypress aerial](/img/me/cypress.png)](https://phish.net)
 
 **Big Cypress, FL — December 30–31, 1999.** The millennium run. Phish played all night into New Year's morning on a Seminole reservation in the Florida Everglades — a seven-hour set that included Tweezer → Mango Song → Tweezer at sunrise. Nothing else was quite like it.
 
@@ -98,7 +98,7 @@ I know from experience that I've seen Tweezer a lot, I've probably never seen Ha
 
 If you have a show history and haven't run it through ihoz, go do it. One date per line, paste it in, and let ZZYZX's 30-year labor of love tell you things about yourself you didn't know you wanted to know.
 
-[![Alan and Kevin at String Cheese Incident, the Greek Theatre, Berkeley](/img/alan-and-kevin.jpg)](https://phish.net)
+[![Alan and Kevin at String Cheese Incident, the Greek Theatre, Berkeley](/img/me/alan-and-kevin.jpg)](https://phish.net)
 
 *Kevin and me at String Cheese Incident at the Greek Theatre in Berkeley — the same crew, different band.*
 
