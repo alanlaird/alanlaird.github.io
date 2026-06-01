@@ -1,0 +1,82 @@
+# Brewfile — install everything with: brew bundle
+
+# AI 
+cask "claude"                 # Claude desktop app
+cask "claude-code"
+cask "google-gemini"
+cask "cursor"                 # includes cursor CLI — enable via Cursor > Install 'cursor' command
+
+# Networking
+cask "tailscale"
+
+# GUI apps
+cask "iterm2"
+cask "ghostty"
+cask "tableplus"
+cask "podman-desktop"
+cask "signal"
+
+# files
+cask "google-drive"
+
+# Fonts — Nerd Fonts required for Powerlevel10k glyphs and omz themes
+cask "font-meslo-lg-nerd-font"        # recommended by p10k, good default
+cask "font-jetbrains-mono-nerd-font"  # clean, popular for dev
+cask "font-fira-code-nerd-font"       # ligatures, very readable
+cask "font-hack-nerd-font"            # minimal, crisp at small sizes
+cask "font-caskaydia-cove-nerd-font"  # Cascadia Code patched by Nerd Fonts, ligatures
+
+# Python
+brew "python3"
+brew "direnv"
+
+# Shell tools
+brew "git"
+brew "gh"
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "eza"
+brew "fzf"
+brew "jq"
+brew "yq"
+brew "htop"
+brew "ncdu"
+brew "tldr"
+brew "mise"
+brew "httpie"
+brew "mkcert"
+
+# zsh
+brew "powerlevel10k"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "zoxide"                   # smarter `z` — written in rust, ~10x faster than rupa/z
+
+brew "gemini-cli"
+
+# Containers
+brew "podman"
+
+# Kubernetes
+brew "kubectl"
+brew "kubectx"
+brew "k9s"
+brew "helm"
+brew "kustomize"
+brew "stern"
+
+# Cloud CLIs
+cask "gcloud-cli"
+brew "awscli"
+brew "aws-vault"
+brew "aws-sam-cli"
+brew "openshift-cli"
+
+# Infrastructure as Code
+brew "opentofu"                 # open source Terraform fork (MPL 2.0, Linux Foundation)
+brew "terragrunt"
+brew "tflint"
+
+# Government / CAC
+cask "opensc-app"

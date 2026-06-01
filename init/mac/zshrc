@@ -1,0 +1,70 @@
+# ~/.zshrc — symlinked from arcwerx/tools/mac/zshrc
+# Machine-specific overrides go in ~/.zshrc.local (sourced at the end).
+
+# ── Powerlevel10k instant prompt — must stay at the very top ────────────────
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# ── Homebrew (PATH, MANPATH, INFOPATH) ──────────────────────────────────────
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+BREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix 2>/dev/null)}"
+
+# ── History ─────────────────────────────────────────────────────────────────
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt INC_APPEND_HISTORY     # write to history file immediately
+setopt HIST_IGNORE_DUPS       # don't record consecutive dupes
+setopt HIST_IGNORE_SPACE      # don't record commands starting with space
+setopt SHARE_HISTORY          # share history across sessions
+setopt EXTENDED_HISTORY       # record timestamps
+
+# ── Directory navigation ────────────────────────────────────────────────────
+setopt AUTO_CD                # `mydir` == `cd mydir`
+setopt AUTO_PUSHD             # cd pushes onto dir stack
+setopt PUSHD_IGNORE_DUPS
+
+# ── Completion ──────────────────────────────────────────────────────────────
+fpath=("$BREW_PREFIX/share/zsh/site-functions" $fpath)
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # case-insensitive
+
+# ── Plugins (order matters: syntax-highlighting must be last) ───────────────
+[[ -f "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+  source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# zoxide — `z <dir>` jumps to frequently-used dirs, `zi` is interactive (fzf)
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
+# fzf — Ctrl-R history, Ctrl-T files, Alt-C cd
+[[ -f "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && \
+  source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+[[ -f "$BREW_PREFIX/opt/fzf/shell/completion.zsh" ]] && \
+  source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
+
+# Syntax highlighting MUST be sourced last
+[[ -f "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+  source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# ── Prompt: Powerlevel10k ───────────────────────────────────────────────────
+[[ -f "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] && \
+  source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# ── Aliases ─────────────────────────────────────────────────────────────────
+[[ -f ~/.aliases.sh ]] && source ~/.aliases.sh
+
+# ── direnv — per-project env overrides ──────────────────────────────────────
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
+# ── Python venv ─────────────────────────────────────────────────────────────
+[[ -f ~/venv/bin/activate ]] && source ~/venv/bin/activate
+
+# ── Machine-specific overrides (untracked) ──────────────────────────────────
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
