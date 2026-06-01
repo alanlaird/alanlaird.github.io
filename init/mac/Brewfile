@@ -76,7 +76,7 @@ brew "openshift-cli"
 # Infrastructure as Code
 brew "opentofu"                 # open source Terraform fork (MPL 2.0, Linux Foundation)
 brew "terragrunt"
-brew "tflint"
+brew "terraform-linters/tap/tflint"  # moved out of homebrew-core; tap auto-installs
 
 # Government / CAC
 cask "opensc-app"
