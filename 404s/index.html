@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Gallery</title>
+<style>
+  html, body { margin: 0; background: #111; color: #ddd; font: 16px/1.5 system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px; }
+  h1 { margin: 0 0 4px; } p { color: #999; margin: 0 0 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+  .card { background: #1b1b1b; border-radius: 10px; overflow: hidden; text-decoration: none; color: inherit; border: 1px solid #2a2a2a; }
+  .card:hover { border-color: #555; }
+  .frame { aspect-ratio: 16 / 10; position: relative; overflow: hidden; background: #000; }
+  iframe { width: 1000px; height: 625px; border: 0; transform: scale(.3); transform-origin: 0 0; pointer-events: none; position: absolute; }
+  .label { padding: 10px 14px; font-family: ui-monospace, Menlo, monospace; font-size: 14px; }
+  a { color: #8cf; }
+</style>
+</head>
+<body>
+<main>
+  <h1>404 gallery</h1>
+  <p>Any broken URL on this site shows one of these at random. Click one to try it on a fake broken URL. <a href="/">Home</a>.</p>
+  <div class="grid" id="grid"></div>
+</main>
+<script>
+  ['neon', 'terminal', 'nvidia-smi', 'setlist', 'space', 'breakout'].forEach(function (n) {
+    var a = document.createElement('a');
+    a.className = 'card'; a.href = '/this/page/does-not-exist?404=' + n;
+    a.innerHTML = '<div class="frame"><iframe loading="lazy" tabindex="-1" src="/404s/' + n + '.html"></iframe></div><div class="label">' + n + '</div>';
+    document.getElementById('grid').appendChild(a);
+  });
+  // scale the previews to the card width
+  function fit() { document.querySelectorAll('.frame').forEach(function (f) { f.firstChild.style.transform = 'scale(' + f.clientWidth / 1000 + ')'; }); }
+  addEventListener('resize', fit); setTimeout(fit, 0);
+</script>
+</body>
+</html>

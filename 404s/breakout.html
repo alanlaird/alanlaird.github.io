@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · Break it</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #14121f; color: #e9e6ff; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; overflow: hidden; touch-action: none; }
+  .top { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 12px 16px; font-size: 14px; color: #9b96c9; }
+  .top a { color: #ffcf5c; }
+  canvas { display: block; margin: 0 auto; }
+  .msg { position: fixed; left: 0; right: 0; bottom: 18px; text-align: center; font-size: 13px; color: #7d78a8; pointer-events: none; padding: 0 16px; }
+</style>
+</head>
+<body>
+<div class="top"><span>page not found · <span id="score">0</span> bricks</span><a href="/">quit to home →</a></div>
+<canvas id="c"></canvas>
+<div class="msg" id="msg">The page is gone, but you can smash the 404. Move to steer · click / tap to launch.</div>
+<script>
+(function () {
+  var c = document.getElementById('c'), x = c.getContext('2d');
+  var W, H, cell, bricks, paddle, ball, live, score = 0, ox, oy;
+  var digits = {
+    '4': ['10001', '10001', '10001', '11111', '00001', '00001', '00001'],
+    '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110']
+  };
+  var colors = ['#ff5c8a', '#ff8a5c', '#ffcf5c', '#7ee081', '#5cc8ff', '#a78bff', '#ff5cf0'];
+  function build() {
+    W = c.width = Math.min(innerWidth, 900); H = c.height = innerHeight;
+    cell = Math.floor(Math.min(W / 19, H / 18));
+    ox = Math.floor((W - cell * 17) / 2); oy = Math.floor(H * .14);
+    bricks = [];
+    '404'.split('').forEach(function (d, di) {
+      digits[d].forEach(function (row, r) {
+        row.split('').forEach(function (b, col) {
+          if (b === '1') bricks.push({ x: ox + (di * 6 + col) * cell, y: oy + r * cell, c: colors[r], alive: true });
+        });
+      });
+    });
+    paddle = { w: cell * 3.2, h: Math.max(8, cell * .4), x: W / 2 };
+    reset();
+  }
+  function reset() { live = false; ball = { r: Math.max(5, cell * .28), x: paddle.x, y: H - 60 - cell, vx: 0, vy: 0 }; }
+  function launch() { if (live) return; live = true; var s = Math.max(5, cell * .32); ball.vx = s * (Math.random() > .5 ? .6 : -.6); ball.vy = -s; document.getElementById('msg').style.opacity = .4; }
+  function steer(px) { paddle.x = Math.max(paddle.w / 2, Math.min(W - paddle.w / 2, px - c.getBoundingClientRect().left)); }
+  addEventListener('mousemove', function (e) { steer(e.clientX); });
+  addEventListener('touchmove', function (e) { steer(e.touches[0].clientX); }, { passive: true });
+  addEventListener('touchstart', function (e) { steer(e.touches[0].clientX); launch(); }, { passive: true });
+  addEventListener('mousedown', launch);
+  addEventListener('keydown', function (e) {
+    if (e.key === ' ') launch();
+    if (e.key === 'ArrowLeft') paddle.x = Math.max(paddle.w / 2, paddle.x - cell);
+    if (e.key === 'ArrowRight') paddle.x = Math.min(W - paddle.w / 2, paddle.x + cell);
+  });
+  addEventListener('resize', build);
+  var particles = [];
+  function tick() {
+    var py = H - 60;
+    if (!live) { ball.x = paddle.x; ball.y = py - ball.r - 2; }
+    else {
+      ball.x += ball.vx; ball.y += ball.vy;
+      if (ball.x < ball.r || ball.x > W - ball.r) { ball.vx *= -1; ball.x = Math.max(ball.r, Math.min(W - ball.r, ball.x)); }
+      if (ball.y < ball.r + 40) { ball.vy = Math.abs(ball.vy); }
+      if (ball.vy > 0 && ball.y + ball.r >= py && ball.y + ball.r <= py + paddle.h + ball.vy && Math.abs(ball.x - paddle.x) < paddle.w / 2 + ball.r) {
+        var sp = Math.hypot(ball.vx, ball.vy), a = (ball.x - paddle.x) / (paddle.w / 2) * 1.05;
+        ball.vx = sp * Math.sin(a); ball.vy = -sp * Math.cos(a);
+      }
+      if (ball.y > H + 20) reset();
+      for (var i = 0; i < bricks.length; i++) {
+        var b = bricks[i];
+        if (!b.alive) continue;
+        if (ball.x + ball.r > b.x && ball.x - ball.r < b.x + cell && ball.y + ball.r > b.y && ball.y - ball.r < b.y + cell) {
+          b.alive = false; score++;
+          document.getElementById('score').textContent = score;
+          var ix = Math.min(ball.x + ball.r - b.x, b.x + cell - (ball.x - ball.r));
+          var iy = Math.min(ball.y + ball.r - b.y, b.y + cell - (ball.y - ball.r));
+          if (ix < iy) ball.vx *= -1; else ball.vy *= -1;
+          for (var p = 0; p < 10; p++) particles.push({ x: b.x + cell / 2, y: b.y + cell / 2, vx: (Math.random() - .5) * 6, vy: (Math.random() - .5) * 6, life: 30, c: b.c });
+          break;
+        }
+      }
+      if (bricks.every(function (b) { return !b.alive; })) win();
+    }
+    draw(py);
+    requestAnimationFrame(tick);
+  }
+  var won = false;
+  function win() {
+    if (won) return; won = true; live = false;
+    document.getElementById('msg').innerHTML = '<span style="color:#7ee081">404 destroyed. The page is still missing, though.</span> Sending you home…';
+    document.getElementById('msg').style.opacity = 1;
+    setTimeout(function () { location.href = '/'; }, 3500);
+  }
+  function draw(py) {
+    x.clearRect(0, 0, W, H);
+    bricks.forEach(function (b) {
+      if (!b.alive) return;
+      x.fillStyle = b.c; x.shadowColor = b.c; x.shadowBlur = 12;
+      x.fillRect(b.x + 1, b.y + 1, cell - 2, cell - 2);
+    });
+    x.shadowBlur = 0;
+    particles = particles.filter(function (p) {
+      p.x += p.vx; p.y += p.vy; p.vy += .15; p.life--;
+      x.globalAlpha = p.life / 30; x.fillStyle = p.c; x.fillRect(p.x, p.y, 3, 3); x.globalAlpha = 1;
+      return p.life > 0;
+    });
+    x.fillStyle = '#e9e6ff'; x.fillRect(paddle.x - paddle.w / 2, py, paddle.w, paddle.h);
+    x.beginPath(); x.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); x.fillStyle = '#ffcf5c'; x.fill();
+  }
+  build(); tick();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · No such file or directory</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0f0b; }
+  body { color: #7CFC7C; font: 15px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace; padding: 24px 16px; box-sizing: border-box; }
+  #term { max-width: 860px; margin: 0 auto; white-space: pre-wrap; word-break: break-word; text-shadow: 0 0 6px rgba(124,252,124,.45); }
+  .p { color: #9ad; } .err { color: #ff6b6b; } .dim { color: #4c7a4c; } .w { color: #e6e6e6; }
+  a { color: #7CFC7C; } a:hover { background: #7CFC7C; color: #0b0f0b; }
+  .cursor { display: inline-block; width: .6em; background: #7CFC7C; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(transparent 0 2px, rgba(0,0,0,.18) 2px 3px); }
+</style>
+</head>
+<body>
+<div id="term"></div>
+<script>
+(function () {
+  var path = location.pathname.indexOf('/404s/') === 0 ? '/that/page/you/wanted' : location.pathname;
+  var esc = function (s) { return s.replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var P = '<span class="p">alan@laird.net:~$</span> ';
+  var script = [
+    ['type', 'cd ' + path],
+    ['out', '<span class="err">bash: cd: ' + esc(path) + ': No such file or directory</span>'],
+    ['type', 'kubectl get page ' + path.replace(/^\//, '').replace(/[^a-z0-9.-]+/gi, '-').toLowerCase().slice(0, 40)],
+    ['out', '<span class="err">Error from server (NotFound): pages "' + esc(path) + '" not found</span>'],
+    ['type', 'kubectl describe node homelab | grep -i blame'],
+    ['out', '<span class="dim">Blame:        dns (it\'s always dns)</span>'],
+    ['type', 'ls /'],
+    ['out', '<a href="/">home/</a>   <a href="/blog.html">blog/</a>   <a href="/blog-tech.html">tech/</a>   <a href="/blog-personal.html">personal/</a>   <a href="/hi/">hi/</a>'],
+    ['type', 'sudo find / -name "' + esc(path.split('/').filter(Boolean).pop() || 'page') + '"'],
+    ['out', '<span class="dim">[sudo] password for alan: ********</span>\n<span class="w">0 results.</span> <span class="dim">I looked everywhere. Even behind the couch.</span>'],
+    ['type', 'exit 404'],
+  ];
+  var term = document.getElementById('term');
+  var html = '';
+  var cursor = '<span class="cursor">&nbsp;</span>';
+  var i = 0;
+  function render(extra) { term.innerHTML = html + (extra || '') + cursor; }
+  function step() {
+    if (i >= script.length) { html += '\n' + P; render(); return; }
+    var s = script[i++];
+    if (s[0] === 'out') { html += s[1] + '\n'; render(); setTimeout(step, 450); return; }
+    var text = s[1], n = 0;
+    html += P;
+    (function typeChar() {
+      if (n <= text.length) { render(esc(text.slice(0, n++))); setTimeout(typeChar, 25 + Math.random() * 60); }
+      else { html += esc(text) + '\n'; render(); setTimeout(step, 350); }
+    })();
+  }
+  setTimeout(step, 400);
+})();
+</script>
+</body>
+</html>

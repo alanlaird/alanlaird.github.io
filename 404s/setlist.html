@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · Not on tonight's setlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Rye&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: radial-gradient(ellipse at top, #3a1c5c, #12081f 70%);
+    display: grid; place-items: center; padding: 32px 16px; box-sizing: border-box;
+    font-family: "Courier Prime", ui-monospace, monospace; color: #2b2118;
+  }
+  .ticket {
+    width: 100%; max-width: 640px; display: flex; background: #f4ead2; border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6); transform: rotate(-2deg); position: relative; overflow: hidden;
+    background-image: repeating-linear-gradient(45deg, rgba(160,120,60,.06) 0 6px, transparent 6px 12px);
+    animation: drop 0.9s cubic-bezier(.2,1.4,.4,1) both;
+  }
+  @keyframes drop { from { transform: translateY(-120vh) rotate(12deg); } to { transform: rotate(-2deg); } }
+  .main { flex: 1; padding: 22px 24px; border-right: 3px dashed #b9a57f; }
+  .stub { width: 120px; padding: 22px 10px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; }
+  .band { font-family: Rye, serif; font-size: 34px; line-height: 1; color: #8a1c1c; margin: 0 0 6px; }
+  .meta { font-size: 13px; color: #6b5b45; margin-bottom: 14px; }
+  h2 { font-size: 13px; letter-spacing: 3px; margin: 14px 0 4px; color: #8a1c1c; }
+  ol { margin: 0; padding-left: 0; list-style: none; font-size: 15px; }
+  li { opacity: 0; animation: ink .4s forwards; }
+  @keyframes ink { to { opacity: 1; } }
+  .missing { text-decoration: line-through; text-decoration-color: #c0392b; text-decoration-thickness: 2px; }
+  .note { font-size: 12px; color: #6b5b45; margin-top: 14px; font-style: italic; }
+  .stamp {
+    position: absolute; right: 175px; top: 46%; transform: rotate(-18deg) scale(3); opacity: 0;
+    border: 4px solid #c0392b; color: #c0392b; padding: 4px 12px; font: 700 26px/1 "Courier Prime", monospace;
+    letter-spacing: 3px; border-radius: 6px; mix-blend-mode: multiply;
+    animation: stamp .25s ease-in 3.4s forwards;
+  }
+  @keyframes stamp { to { transform: rotate(-18deg) scale(1); opacity: .85; } }
+  .big { font-family: Rye, serif; font-size: 44px; color: #8a1c1c; }
+  .stub a { color: #2b2118; font-weight: 700; font-size: 13px; }
+  .barcode { height: 50px; background: repeating-linear-gradient(90deg, #2b2118 0 2px, transparent 2px 4px, #2b2118 4px 5px, transparent 5px 8px); }
+  @media (max-width: 520px) {
+    .ticket { flex-direction: column; } .main { border-right: 0; border-bottom: 3px dashed #b9a57f; }
+    .stub { width: auto; flex-direction: row; align-items: center; } .barcode { width: 80px; }
+    .stamp { right: 20px; top: 30%; }
+  }
+</style>
+</head>
+<body>
+<div class="ticket">
+  <div class="main">
+    <div class="band">The 404s</div>
+    <div class="meta"><span id="date"></span> · The Void Amphitheatre, Nowhere, NV</div>
+    <h2>SET I</h2>
+    <ol id="s1"></ol>
+    <h2>SET II</h2>
+    <ol id="s2"></ol>
+    <h2>ENCORE</h2>
+    <ol id="enc"></ol>
+    <div class="note" id="note"></div>
+  </div>
+  <div class="stub">
+    <div><div>GA</div><div class="big">404</div><div>ADMIT 0</div></div>
+    <div class="barcode"></div>
+    <a href="/">find your seat →</a>
+  </div>
+  <div class="stamp">NOT PLAYED</div>
+</div>
+<script>
+(function () {
+  var path = location.pathname.indexOf('/404s/') === 0 ? '/the-page-you-wanted' : location.pathname;
+  var name = decodeURIComponent(path.split('/').filter(Boolean).pop() || 'Your Page').replace(/\.html?$/, '').replace(/[-_]+/g, ' ');
+  document.getElementById('date').textContent = new Date().toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' });
+  var sets = {
+    s1: ['Lost in the Lot', 'Ticketmaster Fees Blues', 'Redirect Loop >', 'Trailing Slash'],
+    s2: ['Jam in the Key of 404 ->', '<span class="missing">' + name.replace(/[&<>]/g, '') + '</span>', '-> Wandering Off the Map', 'Where\'d the Page Go?'],
+    enc: ['Back to the Homepage']
+  };
+  var delay = 0.9;
+  Object.keys(sets).forEach(function (k) {
+    var ol = document.getElementById(k);
+    sets[k].forEach(function (song) {
+      var li = document.createElement('li');
+      li.innerHTML = song;
+      li.style.animationDelay = (delay += 0.18) + 's';
+      ol.appendChild(li);
+    });
+  });
+  var note = document.getElementById('note');
+  note.textContent = 'Notes: "' + name + '" was teased but never played. 47-minute jam went so far out it never came back.';
+  note.style.opacity = 0; note.style.animation = 'ink .6s ' + (delay + 0.3) + 's forwards';
+})();
+</script>
+</body>
+</html>

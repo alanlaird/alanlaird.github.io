@@ -174,3 +174,19 @@ div{
     filter: hue-rotate(0deg);
   }
 }
+
+.home{
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  font-family: Audiowide, sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ff005d;
+  text-decoration: none;
+  opacity: 0;
+  animation: fadeInText 2s ease-in 6s forwards;
+}
+.home:hover{ text-shadow: 0 0 8px #ff005d; }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · CUDA out of pages</title>
+<style>
+  html, body { margin: 0; min-height: 100%; background: #101214; }
+  body { color: #d7dbe0; font: 14px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; padding: 24px 16px; box-sizing: border-box; }
+  .wrap { max-width: 880px; margin: 0 auto; overflow-x: auto; }
+  pre { margin: 0; font: inherit; }
+  .g { color: #76b900; } .r { color: #ff5f56; } .y { color: #ffd166; } .d { color: #7a828c; }
+  h1 { font-size: 15px; font-weight: normal; margin: 0 0 18px; }
+  .bar { display: inline-block; height: 10px; width: 160px; background: #2a2f35; vertical-align: middle; position: relative; overflow: hidden; }
+  .bar i { position: absolute; inset: 0 auto 0 0; width: 0; background: linear-gradient(90deg, #76b900, #ffd166 70%, #ff5f56); transition: width 2.5s ease-out; }
+  .trace { margin-top: 22px; }
+  a { color: #76b900; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1><span class="d">$</span> nvidia-smi --query-page="<span id="p1"></span>"</h1>
+<pre id="smi"></pre>
+<pre class="trace" id="trace"></pre>
+<p class="d" id="tip" style="opacity:0;transition:opacity 1s">Suggested fix: reduce batch size, or <a href="/">return to /</a> where memory is plentiful.</p>
+</div>
+<script>
+(function () {
+  var path = location.pathname.indexOf('/404s/') === 0 ? '/the/page/you/wanted' : location.pathname;
+  var esc = function (s) { return s.replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var p = esc(path.length > 34 ? path.slice(0, 31) + '...' : path);
+  var pad = function (s, n) { s = String(s); return s + ' '.repeat(Math.max(0, n - s.replace(/<[^>]+>/g, '').replace(/&\w+;/g, ' ').length)); };
+  document.getElementById('p1').textContent = path;
+  var d = new Date().toString().slice(0, 24);
+  document.getElementById('smi').innerHTML = [
+    d,
+    '+-----------------------------------------------------------------------------+',
+    '| NVIDIA-SMI 404.04    Driver Version: 404.04    CUDA Version: 4.04            |',
+    '|-------------------------------+----------------------+----------------------+',
+    '| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |',
+    '| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |',
+    '|===============================+======================+======================|',
+    '|   0  Homelab GPU 404     Off  | 00000000:04:04.0 Off |                  404 |',
+    '| <span class="r">404%</span>  <span class="r">404C</span>    P0   404W / 404W | <span class="r">404404MiB / 404MiB</span>  |    <span class="r">404%</span>      Default |',
+    '+-------------------------------+----------------------+----------------------+',
+    '',
+    '+-----------------------------------------------------------------------------+',
+    '| Processes:                                                                  |',
+    '|  GPU   PID   Type   Process name                              GPU Memory   |',
+    '|=============================================================================|',
+    '|    0   404     C    ' + pad('<span class="y">' + p + '</span>', 42) + '<span class="r">NOT FOUND</span>  |',
+    '|    0  1337     C    ' + pad('python benchmark.py --vibes=max', 42) + '  401MiB   |',
+    '|    0  4040     G    ' + pad('chrome (37 tabs)', 42) + '    3MiB   |',
+    '+-----------------------------------------------------------------------------+',
+    '',
+    'Searching for page in VRAM <span class="bar"><i id="bar"></i></span> <span id="pct" class="d">0%</span>'
+  ].map(function (l) { return /^\|.*\|\s*$/.test(l) ? pad(l.replace(/\s*\|\s*$/, ''), 78) + '|' : l; }).join('\n');
+  var trace = [
+    '<span class="r">Traceback (most recent call last):</span>',
+    '  File "/srv/alan.laird.net/router.py", line 404, in serve',
+    '    page = torch.load("' + esc(path) + '").cuda()',
+    '<span class="r">torch.OutOfPagesError:</span> CUDA error: page not found. Tried to allocate 1 page',
+    '(GPU 0; 404.00 GiB total capacity; 0 bytes of that page actually existing).',
+    '<span class="d">If reserved memory is >> allocated memory try setting PAGE_EXISTS=1</span>'
+  ].join('\n');
+  setTimeout(function () { document.getElementById('bar').style.width = '100%'; }, 300);
+  var n = 0, t = setInterval(function () {
+    n = Math.min(100, n + 3 + Math.floor(Math.random() * 6));
+    document.getElementById('pct').textContent = n + '%';
+    if (n >= 100) {
+      clearInterval(t);
+      document.getElementById('pct').innerHTML = '<span class="r">FAILED</span>';
+      document.getElementById('trace').innerHTML = trace;
+      document.getElementById('tip').style.opacity = 1;
+    }
+  }, 90);
+})();
+</script>
+</body>
+</html>
