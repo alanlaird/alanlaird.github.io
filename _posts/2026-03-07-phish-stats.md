@@ -2,6 +2,8 @@
 layout: personal
 title: "72 Phish shows: a West Coast fan's stats"
 category: personal
+image: /img/me/phish-colorful.png
+description: "72 shows since 1995, counted up and crunched with phish.net and ihoz.com."
 ---
 
 [![Phish](/img/me/phish-colorful.png)](https://phish.net)
