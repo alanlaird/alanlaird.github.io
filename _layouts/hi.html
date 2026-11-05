@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}Alan Laird</title>
+  <meta name="description" content="{{ page.blurb | default: 'Alan Laird — pick how we know each other.' }}">
+  <meta property="og:title" content="Alan Laird">
+  <meta property="og:description" content="{{ page.blurb | default: 'Pick how we know each other.' }}">
+  <meta property="og:url" content="https://alan.laird.net{{ page.url }}">
+  <style>
+    :root {
+      --bg: #f4f2ee; --panel: #ffffff; --text: #2b2b2b; --muted: #77736c;
+      --line: #e4e0d8; --accent: #2c3e50; --hover: #faf8f4;
+      --personal: #c0573e; --hobby: #8a5cc2; --tech: #2f7d6d; --work: #2c5d8f;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1e1e1e; --panel: #272727; --text: #d9d6cf; --muted: #8d8a83;
+        --line: #3a3a3a; --accent: #e8e0d0; --hover: #2f2f2f;
+        --personal: #e0846c; --hobby: #b48ce6; --tech: #5cbfa9; --work: #6fa3d8;
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px 16px 48px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55; background: var(--bg); color: var(--text);
+    }
+    .wrap { max-width: 560px; margin: 0 auto; }
+    header { text-align: center; margin: 12px 0 28px; }
+    .mono {
+      width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent); color: var(--bg); font-weight: 700; font-size: 1.9em; letter-spacing: .04em;
+    }
+    h1 { color: var(--accent); font-size: 1.7em; margin: 0 0 4px; }
+    .sub { color: var(--muted); margin: 0; }
+    a { color: var(--accent); }
+
+    /* the four doors */
+    .doors { display: grid; gap: 12px; }
+    .door {
+      display: flex; align-items: center; gap: 16px; padding: 18px 20px;
+      background: var(--panel); border: 1px solid var(--line); border-left: 6px solid var(--c);
+      border-radius: 12px; text-decoration: none; color: var(--text);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .door:hover, .door:focus-visible { background: var(--hover); transform: translateX(3px); }
+    .door .icon { font-size: 1.8em; line-height: 1; width: 1.4em; text-align: center; }
+    .door strong { display: block; font-size: 1.1em; color: var(--c); }
+    .door span { color: var(--muted); font-size: .92em; }
+
+    /* collection pages */
+    .section {
+      background: var(--panel); border: 1px solid var(--line); border-top: 5px solid var(--c, var(--accent));
+      border-radius: 12px; padding: 20px 22px; margin-bottom: 16px;
+    }
+    .section h2 { margin: 0 0 10px; font-size: 1.05em; color: var(--c, var(--accent)); text-transform: lowercase; letter-spacing: .02em; }
+    .section ul { list-style: none; margin: 0; padding: 0; }
+    .section li { padding: 9px 0; border-bottom: 1px solid var(--line); }
+    .section li:last-child { border-bottom: none; }
+    .section li a { text-decoration: none; font-weight: 500; }
+    .section li a:hover { text-decoration: underline; }
+    .section li small { display: block; color: var(--muted); }
+    .section p { margin: 0 0 8px; }
+    .back { display: inline-block; margin-bottom: 18px; color: var(--muted); text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    footer { text-align: center; color: var(--muted); font-size: .85em; margin-top: 32px; }
+    .personal { --c: var(--personal); } .hobby { --c: var(--hobby); }
+    .tech { --c: var(--tech); } .work { --c: var(--work); }
+  </style>
+</head>
+<body class="{{ page.door }}">
+  <div class="wrap">
+    {% if page.door %}<a class="back" href="/hi/">← how do we know each other?</a>{% endif %}
+    {{ content }}
+    <footer>alan.laird.net</footer>
+  </div>
+</body>
+</html>

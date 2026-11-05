@@ -1,0 +1,33 @@
+---
+layout: hi
+title: friends & family
+door: personal
+blurb: Alan Laird — for friends and family.
+---
+<header>
+  <h1>🏡 friends &amp; family</h1>
+  <p class="sub">The non-work, non-nerd side of things.</p>
+</header>
+
+<div class="section">
+  <h2>stay in touch</h2>
+  <!-- TODO: add personal contact links here (e.g. email, phone, social) -->
+  <p>Grab my number while you're standing here, or say hi on any of the links below.</p>
+</div>
+
+<div class="section">
+  <h2>personal writing</h2>
+  <ul>
+    {% for post in site.categories.personal %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a><small>{{ post.date | date: "%B %Y" }}</small></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="section">
+  <h2>just for fun</h2>
+  <ul>
+    <li><a href="/">random cinemagraph</a><small>a different one every visit</small></li>
+    <li><a href="/index2.html">the rain</a><small>the original home page</small></li>
+  </ul>
+</div>

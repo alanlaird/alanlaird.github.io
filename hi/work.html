@@ -1,0 +1,34 @@
+---
+layout: hi
+title: work
+door: work
+blurb: Alan Laird — resume, code, and how to reach me professionally.
+---
+<header>
+  <h1>💼 work</h1>
+  <p class="sub">SRE and infrastructure for GPU and cloud platforms.</p>
+</header>
+
+<div class="section">
+  <h2>resume</h2>
+  <ul>
+    <li><a href="/alanlaird.pdf">resume (PDF)</a><small>experience, skills, and history</small></li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>connect</h2>
+  <!-- TODO: add LinkedIn and work email here -->
+  <ul>
+    <li><a href="https://github.com/alanlaird">github.com/alanlaird</a><small>public code</small></li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>selected writing</h2>
+  <ul>
+    {% for post in site.categories.tech limit:3 %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a><small>{{ post.date | date: "%B %Y" }}</small></li>
+    {% endfor %}
+  </ul>
+</div>

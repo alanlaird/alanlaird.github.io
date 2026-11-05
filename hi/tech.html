@@ -1,0 +1,27 @@
+---
+layout: hi
+title: tech & homelab
+door: tech
+blurb: Alan Laird — GPU clusters, Kubernetes, homelab, and code.
+---
+<header>
+  <h1>🛠️ tech &amp; homelab</h1>
+  <p class="sub">GPU clusters, Kubernetes, and whatever's running in the rack this week.</p>
+</header>
+
+<div class="section">
+  <h2>code</h2>
+  <ul>
+    <li><a href="https://github.com/alanlaird">github.com/alanlaird</a><small>labs, tooling, and experiments</small></li>
+    <li><a href="https://github.com/alanlaird/alanlaird.github.io/tree/main/init/mac">Mac bootstrap</a><small>how I set up a fresh Mac</small></li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>tech writing</h2>
+  <ul>
+    {% for post in site.categories.tech %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a><small>{{ post.date | date: "%B %Y" }}</small></li>
+    {% endfor %}
+  </ul>
+</div>
