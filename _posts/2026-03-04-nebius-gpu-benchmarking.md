@@ -2,8 +2,6 @@
 layout: post
 title: "GPU cluster benchmarking on Nebius with Terraform, Ansible, and NCCL"
 category: tech
-image: /img/tech/nebius-cluster-scheme.svg
-description: "Spinning up Nebius GPU nodes, running NCCL all-reduce benchmarks, and tearing it all down from a single make command."
 ---
 
 # GPU cluster benchmarking on Nebius

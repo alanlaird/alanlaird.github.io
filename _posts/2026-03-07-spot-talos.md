@@ -2,8 +2,6 @@
 layout: post
 title: "Talos Linux Kubernetes on GCP spot instances with MIG auto-healing"
 category: tech
-image: /img/tech/talos-logo.svg
-description: "A Talos Linux Kubernetes cluster on GCP spot instances, with Managed Instance Groups healing preempted nodes."
 ---
 
 # Talos Linux Kubernetes on GCP spot instances
